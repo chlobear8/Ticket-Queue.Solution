@@ -3,6 +3,8 @@ import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 import EditTicketForm from './EditTicketForm';
+import { connect } from 'react-redux';
+import Ticket from './Ticket';
 
 class TicketControl extends React.Component {
 
@@ -91,5 +93,7 @@ class TicketControl extends React.Component {
   }
 
 }
+
+TicketControl = connect()(TicketControl);
 
 export default TicketControl;
