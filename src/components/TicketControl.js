@@ -1,9 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import NewTicketForm from './NewTicketForm';
 import TicketList from './TicketList';
 import TicketDetail from './TicketDetail';
 import EditTicketForm from './EditTicketForm';
-import { connect } from 'react-redux';
 import Ticket from './Ticket';
 
 class TicketControl extends React.Component {
@@ -12,16 +12,22 @@ class TicketControl extends React.Component {
     super(props);
     this.state = {
       formVisibleOnPage: false,
-      mainTicketList: [],
       selectedTicket: null,
       editing: false
     };
   }
 
   handleAddingNewTicketToList = (newTicket) => {
-    const newMainTicketList = this.state.mainTicketList.concat(newTicket);
-    this.setState({mainTicketList: newMainTicketList, 
-                                    formVisibleOnPage: false });
+    const { dispatch } = this.props;
+    const { id, names, location, issue } = newTicket;
+    const action = {
+      type: 'ADD TICKET',
+      id: id,
+      names: names,
+      location: location,
+      issue: issue,
+    }
+      dispatch(action);               this.setState({formVisibleOnPage: false });
   }
 
   handleClick = () => {
