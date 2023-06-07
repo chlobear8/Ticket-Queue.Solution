@@ -98,7 +98,7 @@ class TicketControl extends React.Component {
       currentlyVisibleState = <NewTicketForm onNewTicketCreation={this.handleAddingNewTicketToList} />;
       buttonText = "Return to Ticket List";
     } else {
-      currentlyVisibleState = <TicketList ticketList={this.state.mainTicketList} onTicketSelection={this.handleChangingSelectedTicket} />;
+      currentlyVisibleState = <TicketList ticketList={this.props.mainTicketList} onTicketSelection={this.handleChangingSelectedTicket} />;
       buttonText = "Add Ticket";
     }
     return (
@@ -118,6 +118,22 @@ const mapStateToProps = state => {
   return {
     mainTicketList: state
   }
+}
+
+function TicketList(props) {
+  return (
+    <React.Fragment>
+      <hr />
+      {Object.values(props.ticketList).map((ticket) => 
+      <Ticket whenTicketClicked = { props.onTicketSelection }
+      names={ticket.names}
+      location={ticket.location}
+      issue={ticket.issue}
+      id={ticket.id}
+      key={ticket.id} />
+    )}
+    </React.Fragment>
+  )
 }
 
 TicketControl = connect(mapStateToProps)(TicketControl);
