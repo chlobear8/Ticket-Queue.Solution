@@ -25,7 +25,7 @@ class TicketControl extends React.Component {
       id: id,
       names: names,
       location: location,
-      issue: issue,
+      issue: issue
     }
       dispatch(action);               this.setState({formVisibleOnPage: false });
   }
@@ -49,9 +49,13 @@ class TicketControl extends React.Component {
   }
 
   handleDeletingTicket = (id) => {
-    const newMainTicketList = this.state.mainTicketList.filter(ticket => ticket.id !== id);
+    const { dispatch } = this.props;
+    const action = {
+      type: 'DELETE TICKET',
+      id: id
+    }
+    dispatch(action);
     this.setState({
-      mainTicketList: newMainTicketList,
       selectedTicket: null
     });
   }
@@ -62,11 +66,17 @@ class TicketControl extends React.Component {
   }
 
   handleEditingTicketInList = (ticketToEdit) => {
-    const editedMainTicketList = this.state.mainTicketList
-              .filter(ticket => ticket.id !== this.state.selectedTicket.id)
-              .concat(ticketToEdit);
-            this.setState({
-              mainTicketList: editedMainTicketList,
+    const { dispatch } = this.props;
+    const { id, names, location, issue } = ticketToEdit;
+    const action = {
+      type: 'ADD TICKET',
+      id: id,
+      names: names,
+      location: location,
+      issue: issue
+    }
+    dispatch(action);
+    this.setState({
               editing: false,
               selectedTicket: null
             });
