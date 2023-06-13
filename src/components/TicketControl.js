@@ -28,7 +28,12 @@ class TicketControl extends React.Component {
       location: location,
       issue: issue
     }
-      dispatch(action);               //this.setState({formVisibleOnPage: false });
+      dispatch(action); 
+      const action2 = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action2);              
+      //this.setState({formVisibleOnPage: false });
   }
 
   handleClick = () => {
@@ -39,6 +44,11 @@ class TicketControl extends React.Component {
         editing: false
       });
     } else {
+      const { dispatch } = this.props;
+      const action = {
+        type: 'TOGGLE_FORM'
+      }
+      dispatch(action);
       //this.setState(prevState => ({formVisibleOnPage: !prevState.formVisibleOnPage,
       //}));
     }
