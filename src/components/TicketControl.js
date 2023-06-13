@@ -19,6 +19,26 @@ class TicketControl extends React.Component {
     };
   }
 
+  componentDidMount() {
+    this.waitTimeUpdateTimer = setInterval(() =>
+    this.updateTicketElapsedWaitTime(),
+    60000
+    );
+  }
+
+  componentDidUpdate() {
+    console.log("component updated");
+  }
+
+  componentWillUnmount() {
+    console.log("component unmounted");
+    clearInterval(this.waitTimeUpdateTimer);
+  }
+
+  updateTicketElapsedWaitTime = () => {
+    console.log("tick");
+  }
+
   handleAddingNewTicketToList = (newTicket) => {
     const { dispatch } = this.props;
     const action = a.addTicket(newTicket);
@@ -110,22 +130,6 @@ const mapStateToProps = state => {
     mainTicketList: state.mainTicketList,
     formVisibleOnPage: state.formVisibleOnPage
   }
-}
-
-function TicketList(props) {
-  return (
-    <React.Fragment>
-      <hr />
-      {Object.values(props.ticketList).map((ticket) => 
-      <Ticket whenTicketClicked = { props.onTicketSelection }
-      names={ticket.names}
-      location={ticket.location}
-      issue={ticket.issue}
-      id={ticket.id}
-      key={ticket.id} />
-    )}
-    </React.Fragment>
-  )
 }
 
 TicketControl = connect(mapStateToProps)(TicketControl);
