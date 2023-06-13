@@ -12,7 +12,7 @@ class TicketControl extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      formVisibleOnPage: false,
+      //formVisibleOnPage: false,
       selectedTicket: null,
       editing: false
     };
@@ -28,19 +28,19 @@ class TicketControl extends React.Component {
       location: location,
       issue: issue
     }
-      dispatch(action);               this.setState({formVisibleOnPage: false });
+      dispatch(action);               //this.setState({formVisibleOnPage: false });
   }
 
   handleClick = () => {
     if (this.state.selectedTicket != null) {
       this.setState({
-        formVisibleOnPage: false,
+        //formVisibleOnPage: false,
         selectedTicket: null,
         editing: false
       });
     } else {
-      this.setState(prevState => ({formVisibleOnPage: !prevState.formVisibleOnPage,
-      }));
+      //this.setState(prevState => ({formVisibleOnPage: !prevState.formVisibleOnPage,
+      //}));
     }
   }
 
