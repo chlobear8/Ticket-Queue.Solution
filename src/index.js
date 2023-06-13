@@ -4,7 +4,7 @@ import './index.css';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { legacy_createStore as createStore } from 'redux';
-import reducer from './reducers/ticket-list-reducer';
+import rootReducer from './reducers/index';
 import { Provider } from 'react-redux';
 
 const store = createStore(reducer);
