@@ -2,14 +2,15 @@ import React from "react";
 import Header from "./Header";
 import TicketControl from "./TicketControl";
 import ToggleTheme from "./ToggleTheme";
+import { ThemeContext } from "../context/theme-context";
 
 function App() {
     return (
-    <React.Fragment>
+    <ThemeContext.Provider value={themes.light}>
       <Header />
       <ToggleTheme />
       <TicketControl />
-    </React.Fragment>
+    </ThemeContext.Provider>
   );
 }
 
