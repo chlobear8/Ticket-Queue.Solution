@@ -7,6 +7,10 @@ function TicketDetail(props) {
   
   const theme = useContext(ThemeContext);
 
+  if (!theme) {
+    throw new Error("ThemeContext must be used within a ThemeContext.Provider!");
+  }
+  
   const styles = {
     backgroundColor: theme.buttonBackground,
     color: theme.textColor
